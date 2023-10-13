@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class FilterConfig {
 
     //@Bean
-    public RouteLocator gatewayLocator(RouteLocatorBuilder builder){
+//    public RouteLocator gatewayLocator(RouteLocatorBuilder builder){
 //        return builder.routes()// 라우팅 정보 등록 시작지점
 //                .route(r ->
 //                        r.path("/first-service/**")
@@ -25,6 +25,6 @@ public class FilterConfig {
 //                                .uri("http://localhost:8002/")
 //                ) // 개별 라우팅 정보를 등록하는 route() 메서드
 //                .build();// 라우팅 정보 등록 종료지점
-    }
+//    }
 
 }
