@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class FilterConfig {
 
-    //@Bean
+//    @Bean
 //    public RouteLocator gatewayLocator(RouteLocatorBuilder builder){
 //        return builder.routes()// 라우팅 정보 등록 시작지점
 //                .route(r ->
