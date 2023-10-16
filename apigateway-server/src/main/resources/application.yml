@@ -15,7 +15,7 @@ spring:
 
       routes: # 개별 마이크로서비스 정보를 routes에 기입함
         - id: first-service
-          uri: http://localhost:8001/
+          uri: lb://FIRST-SERVICE
           predicates:
             - Path=/first-service/**
           filters:
@@ -30,3 +30,13 @@ spring:
             - Path=/second-service/**
           filters:
             - CustomFilter2
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      default-zone: http://127.0.0.1:8761/eureka
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
+
