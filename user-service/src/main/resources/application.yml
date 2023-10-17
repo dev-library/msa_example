@@ -6,7 +6,7 @@ spring:
     name: user-service
   datasource:
     url: ${url}
-    username: ${username}
+    username: ${username_}
     password: ${password}
     driver-class-name: ${driver-class-name}
   jpa:

@@ -30,7 +30,6 @@ spring:
             - Path=/second-service/**
           filters:
             - CustomFilter2
-            -
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
