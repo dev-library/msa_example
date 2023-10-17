@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
+
 @Entity
 @Table(name = "users")
 @Getter @AllArgsConstructor @Builder
@@ -25,5 +28,7 @@ public class User {
     private String encPw;
 
     private String uuid;
+
+    private LocalDateTime createAt;
 
 }
