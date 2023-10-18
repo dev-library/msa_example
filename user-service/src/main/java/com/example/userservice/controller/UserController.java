@@ -6,6 +6,7 @@ import com.example.userservice.dto.ResponseFindUserDto;
 import com.example.userservice.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,7 +26,7 @@ public class UserController {
     @PostMapping("users")
     public ResponseEntity<?> createUser(@Valid @RequestBody RequestCreateUserDto userDto){
         userService.createUser(userDto);
-        return ResponseEntity.ok("회원 가입 완료!");
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     // 가입된 계정을 uuid기반으로 찾아올 수 있도록 get요청을 만들어주세요.
@@ -34,5 +35,10 @@ public class UserController {
     public ResponseEntity<?> findUserByUuid(@PathVariable String uuid){
         ResponseFindUserDto userDto = userService.findUserByUuid(uuid);
         return ResponseEntity.ok(userDto);
+    }
+
+    @GetMapping("/users/all")
+    public ResponseEntity<?> findAllUser(){
+        return ResponseEntity.ok(userService.findAllUser());
     }
 }
