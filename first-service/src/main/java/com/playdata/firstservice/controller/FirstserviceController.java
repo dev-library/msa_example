@@ -26,7 +26,9 @@ public class FirstserviceController {
     public String portCheck(){
         // application.yml파일에 기입된 정보를 얻어와서 자바 자료로 만들어줌.
         // 그냥 server.port로 기입하면 실제로 대입된 값인 0으로 출력
-        return env.getProperty("local.server.port");
+        return env.getProperty("local.server.port")
+                + "/"
+                + env.getProperty("test.value");
     }
 
 }
