@@ -6,4 +6,7 @@ spring:
     config:
       server:
         git:
-          uri: file:///Users/chaejonghun/config-resource
+          uri: https://github.com/dev-library/config_repository.git
+          password: ENC(ULeq5/mCgwkFQ8UBuTmSw1dxTGvCKrXp)
+          username: ENC(JuUtDHZUjvqM6EtzjH38WWG9/AzunkCh)
+          #file:///Users/chaejonghun/config-resource

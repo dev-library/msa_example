@@ -3,6 +3,7 @@ package com.example.itemservice.controller;
 import com.example.itemservice.dto.RequestCreateItemDto;
 import com.example.itemservice.service.ItemService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("item-service")
 @RequiredArgsConstructor
 public class ItemController {
+
+    private final Environment env;
 
     private final ItemService itemService;
 
@@ -24,6 +27,12 @@ public class ItemController {
         itemService.createItem(requestCreateItemDto);
         return new ResponseEntity(HttpStatus.CREATED);
     }
+
+    @GetMapping("profile-check")
+    public String profileCheck(){
+        return env.getProperty("pro.file");
+    }
+
 
 
 }
