@@ -1,6 +1,7 @@
 package com.example.itemservice.controller;
 
 import com.example.itemservice.dto.RequestCreateItemDto;
+import com.example.itemservice.dto.ResponseOrderByItemDto;
 import com.example.itemservice.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.env.Environment;
@@ -31,6 +32,12 @@ public class ItemController {
     @GetMapping("profile-check")
     public String profileCheck(){
         return env.getProperty("pro.file");
+    }
+
+    @GetMapping("items/{productId}/orders")
+    public ResponseEntity<?> getOrdersByProductId(@PathVariable String productId){
+        ResponseOrderByItemDto dto = itemService.findOrderByItem(productId);
+        return ResponseEntity.ok(dto);
     }
 
 

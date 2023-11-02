@@ -37,6 +37,7 @@ dependencies {
 	implementation 'org.springframework.cloud:spring-cloud-starter-config:4.0.4'
 	// https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-bootstrap
 	implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap:4.0.4'
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 }
 
 dependencyManagement {

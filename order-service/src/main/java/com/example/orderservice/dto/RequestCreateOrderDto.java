@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Getter @Setter @AllArgsConstructor
-@NoArgsConstructor @Builder
+@NoArgsConstructor @Builder @ToString
 public class RequestCreateOrderDto {
 
     private String orderId;

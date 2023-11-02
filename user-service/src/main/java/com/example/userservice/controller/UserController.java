@@ -4,6 +4,7 @@ import com.example.userservice.domain.User;
 import com.example.userservice.dto.RequestCreateUserDto;
 import com.example.userservice.dto.ResponseFindUserDto;
 import com.example.userservice.service.UserService;
+import jakarta.validation.Path;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -41,4 +42,12 @@ public class UserController {
     public ResponseEntity<?> findAllUser(){
         return ResponseEntity.ok(userService.findAllUser());
     }
+
+    @GetMapping("users/{userId}/orders")
+    public ResponseEntity<?> findOrdersByUserId(@PathVariable String userId){
+        ResponseFindUserDto userDto = userService.findUserOrderList(userId);
+        return ResponseEntity.ok(userDto);
+    }
+
+
 }
