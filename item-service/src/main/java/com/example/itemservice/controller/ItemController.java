@@ -40,6 +40,11 @@ public class ItemController {
         return ResponseEntity.ok(dto);
     }
 
-
-
+    //PathVariable을 이용해서 message를 큐에 적재할수있도록
+    // 엔드포인트를 직접 설정해주세요.
+    @GetMapping("items/{message}/message")
+    public ResponseEntity<?> publishTestMessage(@PathVariable String message) {
+        itemService.publishTestMessage(message);
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
 }
