@@ -3,6 +3,9 @@ package com.example.itemservice.controller;
 import com.example.itemservice.dto.RequestCreateItemDto;
 import com.example.itemservice.dto.ResponseOrderByItemDto;
 import com.example.itemservice.service.ItemService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -18,15 +21,23 @@ public class ItemController {
 
     private final ItemService itemService;
 
+    // 직렬화, 역직렬화 담당 라이브러리.
+    private final ObjectMapper objectMapper;
+
+
+
     @GetMapping("health-check")
     public String healthCheck(){
         return "item-service service is available.";
     }
 
     @PostMapping("items")
-    public ResponseEntity<?> createItem(@RequestBody RequestCreateItemDto requestCreateItemDto){
-        itemService.createItem(requestCreateItemDto);
-        return new ResponseEntity(HttpStatus.CREATED);
+    public ResponseEntity<?> createItem(@Valid @RequestBody RequestCreateItemDto requestCreateItemDto)
+        throws JsonProcessingException {
+        //메시지 큐로만 전달하면 됨.
+        itemService.publishCreateItemMessage(requestCreateItemDto);
+        //itemService.createItem(requestCreateItemDto);
+        return ResponseEntity.ok("메시지큐에 생성 요청 적재 완료!");
     }
 
     @GetMapping("profile-check")

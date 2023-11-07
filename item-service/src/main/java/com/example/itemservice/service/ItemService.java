@@ -7,6 +7,8 @@ import com.example.itemservice.dto.ResponseOrderByItemDto;
 import com.example.itemservice.feignclient.OrderFeignClient;
 import com.example.itemservice.repository.ItemRepository;
 import com.example.itemservice.util.Producer;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,7 @@ public class ItemService {
     private final ItemRepository itemRepository;
     private final OrderFeignClient orderFeignClient;
     private final Producer producer;
+    private final ObjectMapper objectMapper;
 
     public void createItem(RequestCreateItemDto requestCreateItemDto){
         itemRepository.save(requestCreateItemDto.toEntity());
@@ -46,4 +49,11 @@ public class ItemService {
         producer.sendTestMessage(message);
     }
 
+
+    public void publishCreateItemMessage(RequestCreateItemDto requestCreateItemDto)
+            throws JsonProcessingException {
+        // DTO를 json(String)으로 직렬화
+        String message = objectMapper.writeValueAsString(requestCreateItemDto);
+        producer.sendCreateItemMessage(message);
+    }
 }
